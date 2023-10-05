@@ -6,6 +6,8 @@ import { Command } from "./commands/command.class";
 import { StartCommand } from "./commands/start.command";
 import LocalSession from "telegraf-session-local";
 import { SelectCommand } from "./commands/select.command";
+import { sequelize } from "./DB/sequelize";
+import { syncDatabase } from "./DB/syncDatabase";
 
 class Bot {
   bot: Telegraf<IBotContext>;
@@ -17,6 +19,8 @@ class Bot {
   }
 
   init() {
+    syncDatabase().then((res) => console.log("База данных синхронизирована"));
+
     this.commands = [new StartCommand(this.bot), new SelectCommand(this.bot)];
     for (const command of this.commands) {
       command.handle();

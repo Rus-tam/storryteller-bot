@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/node": "^20.8.2",
+    "@types/sequelize": "^4.28.16",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.50.0",
@@ -29,6 +30,8 @@
   },
   "dependencies": {
     "dotenv": "^16.3.1",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6",
     "telegraf": "^4.14.0",
     "telegraf-session-local": "^2.1.1"
   }
