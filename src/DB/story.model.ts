@@ -14,11 +14,18 @@ StoryModel.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    author: {
+      type: DataTypes.STRING,
+    },
+    chatId: {
+      type: DataTypes.STRING,
+    },
     story: {
       type: DataTypes.STRING,
     },
     storyType: {
       type: DataTypes.STRING,
+      defaultValue: null,
     },
     isModerated: {
       type: DataTypes.BOOLEAN,
