@@ -1,13 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "./sequelize";
 
-export class StoriesModel extends Model {
+export class StoryModel extends Model {
   public id!: number;
   public story!: string;
   public isModerated!: boolean;
 }
 
-StoriesModel.init(
+StoryModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,8 +17,12 @@ StoriesModel.init(
     story: {
       type: DataTypes.STRING,
     },
+    storyType: {
+      type: DataTypes.STRING,
+    },
     isModerated: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
