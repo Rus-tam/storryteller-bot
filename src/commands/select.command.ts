@@ -19,5 +19,7 @@ export class SelectCommand extends Command {
         ]),
       );
     });
+
+    this.bot.action("story_for_boy", (ctx) => {});
   }
 }

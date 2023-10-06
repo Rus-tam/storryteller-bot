@@ -1,12 +1,14 @@
 {
   "name": "storyteller-bot",
   "version": "1.0.0",
-  "description": "storryteller telegram bot",
+  "description": "storyteller telegram bot",
   "main": "app.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "nodemon --exec ts-node src/app.ts",
+    "build": "rimraf ./build && npx tsc",
+    "dev": "npx nodemon",
     "start": "node ./dist/app.js",
+    "lint": "npx eslint ./src",
+    "format": "npx eslint ./src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -26,6 +28,8 @@
     "eslint": "^8.50.0",
     "nodemon": "^3.0.1",
     "prettier": "3.0.3",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {

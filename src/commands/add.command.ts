@@ -2,6 +2,7 @@ import { Command } from "./command.class";
 import { Markup, Telegraf } from "telegraf";
 import { IBotContext } from "../context/context.interface";
 import { StoryModel } from "../DB/story.model";
+import { storyType } from "../requests/storyType.enum";
 
 export class AddCommand extends Command {
   constructor(bot: Telegraf<IBotContext>) {
@@ -21,15 +22,15 @@ export class AddCommand extends Command {
     });
 
     this.bot.action("for_boy", (ctx) => {
-      ctx.session.storyType = "boy";
+      ctx.session.storyType = storyType.BOY;
       ctx.reply("Отправьте мне свою сказку ответным сообщением");
     });
     this.bot.action("for_girl", (ctx) => {
-      ctx.session.storyType = "girl";
+      ctx.session.storyType = storyType.GIRL;
       ctx.reply("Отправьте мне свою сказку ответным сообщением");
     });
     this.bot.action("for_boy_girl", (ctx) => {
-      ctx.session.storyType = "boy_girl";
+      ctx.session.storyType = storyType.BOY_GIRL;
       ctx.reply("Отправьте мне свою сказку ответным сообщением");
     });
 
