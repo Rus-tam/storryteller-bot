@@ -3,7 +3,6 @@ import { Markup, Telegraf } from "telegraf";
 import { IBotContext } from "../context/context.interface";
 import { StoryRequest } from "../requests/story.request";
 import { storyType } from "../requests/storyType.enum";
-import { isStringObject } from "util/types";
 
 export class SelectCommand extends Command {
   constructor(bot: Telegraf<IBotContext>) {

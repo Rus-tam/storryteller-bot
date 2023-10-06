@@ -9,7 +9,14 @@ export class StartCommand extends Command {
 
   handle(): void {
     this.bot.start((ctx) => {
-      ctx.reply("Добро пожаловать в бот рассказчик сказок");
+      ctx.reply(
+        "Добро пожаловать в бот рассказчик сказок",
+        Markup.keyboard([
+          Markup.button.callback("Модерировать сказку", "moderate_story"),
+        ]),
+      );
     });
+
+    this.bot.action("moderate_story", (ctx) => {});
   }
 }
