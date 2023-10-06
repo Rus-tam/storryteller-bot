@@ -9,4 +9,11 @@ export class StoryRequest {
       order: [sequelize.fn("RANDOM")],
     });
   }
+
+  static async randomStoryRequest(): Promise<StoryModel | null> {
+    return StoryModel.findOne({
+      where: { isModerated: true },
+      order: [sequelize.fn("RANDOM")],
+    });
+  }
 }

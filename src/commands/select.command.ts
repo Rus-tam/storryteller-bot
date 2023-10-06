@@ -1,6 +1,9 @@
 import { Command } from "./command.class";
 import { Markup, Telegraf } from "telegraf";
 import { IBotContext } from "../context/context.interface";
+import { StoryRequest } from "../requests/story.request";
+import { storyType } from "../requests/storyType.enum";
+import { isStringObject } from "util/types";
 
 export class SelectCommand extends Command {
   constructor(bot: Telegraf<IBotContext>) {
@@ -20,6 +23,44 @@ export class SelectCommand extends Command {
       );
     });
 
-    this.bot.action("story_for_boy", (ctx) => {});
+    this.bot.action("story_for_boy", async (ctx) => {
+      const story = await StoryRequest.request(storyType.BOY);
+      if (!story) {
+        ctx.reply("К сожалению, нужная сказка не найдена");
+      }
+      if (story && story?.story) {
+        ctx.reply(story?.story);
+      }
+    });
+
+    this.bot.action("story_for_girl", async (ctx) => {
+      const story = await StoryRequest.request(storyType.GIRL);
+      if (!story) {
+        ctx.reply("К сожалению, нужная сказка не найдена");
+      }
+      if (story && story?.story) {
+        ctx.reply(story?.story);
+      }
+    });
+
+    this.bot.action("story_for_both", async (ctx) => {
+      const story = await StoryRequest.request(storyType.BOY_GIRL);
+      if (!story) {
+        ctx.reply("К сожалению, нужная сказка не найдена");
+      }
+      if (story && story?.story) {
+        ctx.reply(story?.story);
+      }
+    });
+
+    this.bot.action("random_story", async (ctx) => {
+      const story = await StoryRequest.randomStoryRequest();
+      if (!story) {
+        ctx.reply("К сожалению, нужная сказка не найдена");
+      }
+      if (story && story?.story) {
+        ctx.reply(story?.story);
+      }
+    });
   }
 }
