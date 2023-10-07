@@ -23,4 +23,19 @@ export class RequestClass {
       order: [sequelize.fn("RANDOM")],
     });
   }
+
+  static async admitStory(id: number): Promise<string> {
+    const story = await StoryModel.findOne({
+      where: { id },
+    });
+
+    if (!story) {
+      return "Ошибка модерации истории";
+    }
+
+    story.isModerated = true;
+    await story.save();
+
+    return "История прошла модерацию";
+  }
 }

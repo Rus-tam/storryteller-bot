@@ -24,6 +24,7 @@ export class StartCommand extends Command {
 
       if (!story) {
         ctx.reply("Все сказки прошли модерацию");
+        return;
       }
 
       if (story?.story) {
@@ -35,6 +36,13 @@ export class StartCommand extends Command {
           ]),
         );
       }
+
+      this.bot.action("admit_story", async (ctx): Promise<void> => {
+        const result: string = await RequestClass.admitStory(story.id);
+        await ctx.reply(result);
+      });
+
+      this.bot.action("reject_story", async (ctx) => {});
     });
 
     this.bot.action("add_admin", (ctx) => {});
