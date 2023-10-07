@@ -10,6 +10,7 @@ import { sequelize } from "./DB/sequelize";
 import { syncDatabase } from "./DB/syncDatabase";
 import { AddCommand } from "./commands/add.command";
 import { ModerateCommand } from "./commands/moderate.command";
+import { AddAdminCommand } from "./commands/addadmin.command";
 
 class Bot {
   bot: Telegraf<IBotContext>;
@@ -28,6 +29,7 @@ class Bot {
       new SelectCommand(this.bot),
       new AddCommand(this.bot),
       new ModerateCommand(this.bot),
+      new AddAdminCommand(this.bot),
     ];
     for (const command of this.commands) {
       command.handle();
