@@ -9,6 +9,7 @@ import { SelectCommand } from "./commands/select.command";
 import { sequelize } from "./DB/sequelize";
 import { syncDatabase } from "./DB/syncDatabase";
 import { AddCommand } from "./commands/add.command";
+import { ModerateCommand } from "./commands/moderate.command";
 
 class Bot {
   bot: Telegraf<IBotContext>;
@@ -26,6 +27,7 @@ class Bot {
       new StartCommand(this.bot),
       new SelectCommand(this.bot),
       new AddCommand(this.bot),
+      new ModerateCommand(this.bot),
     ];
     for (const command of this.commands) {
       command.handle();

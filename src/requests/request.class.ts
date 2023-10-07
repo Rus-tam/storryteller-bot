@@ -25,17 +25,25 @@ export class RequestClass {
   }
 
   static async admitStory(id: number): Promise<string> {
-    const story = await StoryModel.findOne({
-      where: { id },
-    });
+    const condition = {
+      where: {
+        id,
+        isModerated: false,
+      },
+    };
+    const [updatedRowCount] = await StoryModel.update(
+      { isModerated: true },
+      condition,
+    );
 
-    if (!story) {
-      return "Ошибка модерации истории";
+    if (updatedRowCount > 0) {
+      return "История прошла модерацию";
+    } else {
+      return "Запись не найдена или не обновлена";
     }
+  }
 
-    story.isModerated = true;
-    await story.save();
-
-    return "История прошла модерацию";
+  static async rejectStory(id: number) {
+    return StoryModel.destroy({ where: { id } });
   }
 }
