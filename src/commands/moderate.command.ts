@@ -11,6 +11,11 @@ export class ModerateCommand extends Command {
   handle(): void {
     this.bot.command("moderate", async (ctx) => {
       const story = await RequestClass.unmoderatedStories();
+      if (story) {
+        ctx.session.storyIdForAdmit = story?.id;
+      }
+
+      console.log("STORY_ID", story?.id);
 
       if (!story) {
         ctx.reply("Все сказки прошли модерацию");
@@ -28,12 +33,14 @@ export class ModerateCommand extends Command {
       }
 
       this.bot.action("admit_story", async (ctx): Promise<void> => {
-        const result: string = await RequestClass.admitStory(story.id);
+        const result: string = await RequestClass.admitStory(
+          ctx.session.storyIdForAdmit,
+        );
         ctx.reply(result);
       });
 
       this.bot.action("reject_story", async (ctx) => {
-        await RequestClass.rejectStory(story.id);
+        await RequestClass.rejectStory(ctx.session.storyIdForAdmit);
         ctx.reply("История удалена");
       });
     });

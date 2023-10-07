@@ -25,6 +25,7 @@ export class RequestClass {
   }
 
   static async admitStory(id: number): Promise<string> {
+    console.log("ADMITTED ID", id);
     const condition = {
       where: {
         id,
