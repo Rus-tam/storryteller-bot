@@ -1,6 +1,7 @@
 import { storyType } from "./storyType.enum";
 import { StoryModel } from "../DB/story.model";
 import { sequelize } from "../DB/sequelize";
+import { AdminModel } from "../DB/admin.model";
 
 export class RequestClass {
   static async storyRequest(key: storyType): Promise<StoryModel | null> {
@@ -46,5 +47,13 @@ export class RequestClass {
 
   static async rejectStory(id: number) {
     return StoryModel.destroy({ where: { id } });
+  }
+
+  static async isAdmin(name: string) {
+    const admin = await AdminModel.findOne({ where: { name } });
+    if (admin) {
+      return true;
+    }
+    return false;
   }
 }

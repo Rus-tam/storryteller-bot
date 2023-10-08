@@ -3,7 +3,7 @@ import { sequelize } from "./sequelize";
 
 export class AdminModel extends Model {
   public id!: number;
-  public admin!: string;
+  public name!: string;
 }
 
 AdminModel.init(
@@ -13,7 +13,7 @@ AdminModel.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    admin: {
+    name: {
       type: DataTypes.STRING,
     },
   },
