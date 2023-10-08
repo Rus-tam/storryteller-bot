@@ -10,6 +10,11 @@ export class AddAdminCommand extends Command {
 
   handle(): void {
     this.bot.command("addadmin", async (ctx) => {
+      if (!ctx.session.isAdmin) {
+        ctx.reply("У вас нет доступа к данному разделу");
+        return;
+      }
+
       ctx.reply("Введите имя нового админа без @. Постарайтесь не ошибиться.");
 
       this.bot.on("text", async (nextCtx) => {

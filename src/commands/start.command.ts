@@ -9,8 +9,16 @@ export class StartCommand extends Command {
   }
 
   handle(): void {
-    this.bot.start((ctx) => {
+    this.bot.start(async (ctx) => {
       ctx.reply("Добро пожаловать в бот рассказчик сказок");
+
+      if (ctx.message.from.username) {
+        ctx.session.isAdmin = await RequestClass.isAdmin(
+          ctx.message.from.username,
+        );
+      } else {
+        ctx.session.isAdmin = false;
+      }
     });
   }
 }

@@ -50,7 +50,7 @@ export class RequestClass {
   }
 
   static async isAdmin(name: string) {
-    const admin = await AdminModel.findOne({ where: { name } });
+    const admin = await AdminModel.findOne({ where: { admin: name } });
     if (admin) {
       return true;
     }

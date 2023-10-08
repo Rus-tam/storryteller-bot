@@ -10,6 +10,10 @@ export class ModerateCommand extends Command {
 
   handle(): void {
     this.bot.command("moderate", async (ctx) => {
+      if (!ctx.session.isAdmin) {
+        ctx.reply("У вас нет доступа к данному разделу");
+        return;
+      }
       const story = await RequestClass.unmoderatedStories();
       if (story) {
         ctx.session.storyIdForAdmit = story?.id;
